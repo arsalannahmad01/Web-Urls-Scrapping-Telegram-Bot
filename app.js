@@ -1,10 +1,15 @@
 const {Builder, Browser, By, Key, until} = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config()
 
 async function scrapeUrls() {
 
-    let driver = await new Builder().forBrowser(Browser.CHROME).build();
+    // let driver = await new Builder().forBrowser(Browser.CHROME).build();
+    const chromeOptions = new chrome.Options();
+    chromeOptions.addArguments('--headless');
+
+    let driver = await new Builder().forBrowser(Browser.CHROME).setChromeOptions(chromeOptions).build();
     const url = `https://www.geeksforgeeks.org/`;
     let all_urls = [];
 
