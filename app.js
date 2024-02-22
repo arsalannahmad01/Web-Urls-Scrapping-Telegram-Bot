@@ -1,7 +1,8 @@
+require('dotenv').config()
 const {Builder, Browser, By, Key, until} = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config()
+const cron = require('node-cron')
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
@@ -57,5 +58,6 @@ const main = async() => {
 
 main()
 
-// setInterval(main, 5 * 60 * 1000)
-setInterval(main, 60 * 1000)
+cron.schedule('* * * * *', () => {
+   main()
+})
