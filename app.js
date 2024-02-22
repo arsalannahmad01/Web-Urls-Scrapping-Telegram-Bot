@@ -3,7 +3,7 @@ const chrome = require('selenium-webdriver/chrome');
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config()
 
-async function scrapeUrls() {
+const scrapeUrls = async () => {
 
     // let driver = await new Builder().forBrowser(Browser.CHROME).build();
     const chromeOptions = new chrome.Options();
@@ -38,7 +38,7 @@ async function scrapeUrls() {
 }
 
 
-async function main() {
+const main = async() => {
     const BOT_TOKEN = process.env.BOT_TOKEN;
     const bot = new TelegramBot(BOT_TOKEN, { polling: false });
 
